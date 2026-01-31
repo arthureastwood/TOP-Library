@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Application</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Library Application</h1>
+        <div class="tool-bar">
+            <button type="button" id="new-book-button">New Book</button>
+        </div>
+    </header>
+
+    <main id="card-container">
+
+    </main>
+
+    <div id="modal-wrapper">
+        <!-- Modal pop-up -->
+        <div id="modal-container">
+            <dialog id="modal">
+                <form action="" method="dialog" id="book-creator">
+                    <div>
+                        <h2>Add a New Book To the Library</h2>
+                    </div>
+                    <div>
+                        <label for="author-first-name">Author First Name</label>
+                        <input type="text"
+                            id="author-first-name"
+                            name="author-first-name"
+                            maxlength="25" 
+                            pattern="(?![\s\-'][\s\-'])([A-Za-z]+(?:[\s\-']?[A-Za-z]+)+)"
+                            title="Use only letters, single spaces, apostrophes, and hyphens. Words must be at most 25 characters and start and end with a letter." 
+                        required/>
+                        <span id="author-first-name-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                    </div>
+                    <div>
+                        <label for="author-last-name">Author Last Name</label>
+                        <input type="text" 
+                            id="author-last-name" 
+                            name="author-last-name"
+                            maxlength="50" 
+                            pattern="(?![\s\-'][\s\-'])([A-Za-z]+(?:[\s\-']?[A-Za-z]+)+)"
+                            title="Use only letters, single spaces, apostrophes, and hyphens. Words must be at most 50 characters and start and end with a letter." 
+                        required>
+                        <span id="author-last-name-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                    </div>
+                    <div>
+                        <label for="title-input">Book Title</label>
+                        <input type="text" id="title-input" name="title" maxlength="100" required>
+                        <span id="book-title-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="pages-input">How many pages does the book have?</label>
+                            <input type="number" id="pages-input" name="pages" min="1" max="2500" required>
+                        </div>
+                        <div>
+                            <fieldset>
+                                <legend>Have you read it?</legend>
+                                <div id="radio-container">
+                                    <label class="radio-button" for="if-read-yes">
+                                        Yes
+                                        <input type="radio" id="if-read-yes" name="if-read" value="yes" checked required>
+                                    </label>
+                                    <label class="radio-button" for="if-read-no">
+                                        No
+                                        <input type="radio" id="if-read-no" name="if-read" value="no" required>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <button type="submit" id="add-book-button">Add Book</button>
+                </form>
+                <button type="button" id="close-button">X</button>
+            </dialog>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; <span id="footerYear"></span> Library Application.</p>
+    </footer>
+</body>
+</html>

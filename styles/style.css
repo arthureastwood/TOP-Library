@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'norse-bold';
+    src: url(../fonts/Norse-Bold.otf);
+    font-weight: 500;
+    font-style: normal;
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'norse-bold';
+    font-size: 36px;
+    background-color: var(--primary-clr);
+    color: var(--secondary-clr);
+}
+
+:root{
+    --primary-clr: #360d81;
+    --secondary-clr: #ffffffde;
+    --background-clr: #1ab68f;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--background-clr);
+    flex-direction: column;
+    align-items: center;
+}
+
+#new-book-button{
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-clr);
+    color: var(--secondary-clr);
+    padding: 10px;
+    font-size: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-family: 'norse-bold';
+}
+
+#new-book-button:hover{
+    background-color: var(--secondary-clr);
+    color: var(--primary-clr);
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
