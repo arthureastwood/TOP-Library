@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>Library Application</h1>
+        <h1>LIBRARY APPLICATION</h1>
         <div class="tool-bar">
             <button type="button" id="new-book-button">New Book</button>
         </div>
@@ -58,6 +58,11 @@
                         <div>
                             <label for="pages-input">How many pages does the book have?</label>
                             <input type="number" id="pages-input" name="pages" min="1" max="2500" required>
+                        </div>
+                        <div>
+                            <label for="title-input">Genre</label>
+                            <input type="text" id="genre-input" name="genre" maxlength="100" required>
+                            <span id="book-genre-span" class="invalid-input">Maximum word length is 28 characters!</span>
                         </div>
                         <div>
                             <fieldset>

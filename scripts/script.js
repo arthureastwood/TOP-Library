@@ -1,29 +1,28 @@
 // DOM Elements
-const form = document.querySelector('#book-creator');
-const newBookBtn = document.querySelector('#new-book-button');
-const modal = document.querySelector('#modal');
-const closeBtn = document.querySelector('#close-button');
-const addBookBtn = document.querySelector('#add-book-button');
-const cardContainer = document.querySelector('#card-container');
-const authorFirstName = document.querySelector('#author-first-name');
-const authorLastName = document.querySelector('#author-last-name');
-const title = document.querySelector('#title-input');
-const bookPages = document.querySelector('#pages-input');
-const authorFirstNameSpan = document.querySelector('#author-first-name-span');
-const authorLastNameSpan = document.querySelector('#author-last-name-span');
-const bookTitleSpan = document.querySelector('#book-title-span');
+const form = document.getElementById('book-creator');
+const newBookBtn = document.getElementById('new-book-button');
+const modal = document.getElementById('modal');
+const closeBtn = document.getElementById('close-button');
+const addBookBtn = document.getElementById('add-book-button');
+const cardContainer = document.getElementById('card-container');
+const authorFirstName = document.getElementById('author-first-name');
+const authorLastName = document.getElementById('author-last-name');
+const title = document.getElementById('title-input');
+const bookPages = document.getElementById('pages-input');
+const genre = document.getElementById('genre-input');
+const authorFirstNameSpan = document.getElementById('author-first-name-span');
+const authorLastNameSpan = document.getElementById('author-last-name-span');
+const bookTitleSpan = document.getElementById('book-title-span');
+const bookGenreSpan = document.getElementById('book-genre-span');
 const toggleIfReadBtns = document.querySelectorAll('.card button:first-of-type');
 const removeBkBtns = document.querySelectorAll('.card button:last-of-type');
 const bkCards = document.querySelectorAll('.card');
 
 // The library which is an array
 const myLibrary = [];
-let book;
-
-
 
 // Constructor function for creating books
-function Book(authorFirstName, authorLastName, title, pages, genre, ifRead){
+function Book(authorFirstName, authorLastName, title, bookPages, genre, toggleIfReadBtns){
     if(!new.target){
         throw Error("Use new as an operator to create objects using the constructor function");
     }
@@ -31,19 +30,26 @@ function Book(authorFirstName, authorLastName, title, pages, genre, ifRead){
     this.authorFirstName = authorFirstName;
     this.authorLastName = authorLastName;
     this.title = title;
-    this.pages = pages;
+    this.bookPages = parseInt(bookPages);
     this.genre = genre;
     this.id = crypto.randomUUID();
-    this.ifRead = ifRead;
+    this.toggleIfReadBtns = toggleIfReadBtns;
 }
 
-// Method to add books to the library
+// Function to add books to the library
 Book.prototype.addBookToLibrary = function(){
-    book = `${this.author} wrote ${this.title} that is ${this.pages} pages and is of the ${this.genre} genre.`;
-    console.log(book);
-    
-    console.log(myLibrary);
-    return book;
+    authorFirstName = authorFirstName.value;
+    authorLastName = authorLastName.value;
+    author = `${authorFirstName} ${authorLastName}`;
+    title = title.value;
+    bookPages = bookPages.value;
+    genre = genre.value;
+    toggleIfReadBtns = toggleIfReadBtns.value;
+    let book = `${this.author} ${this.title} ${this.bookPages} ${this.genre} ${this.toggleIfReadBtns}`;
+    addBookBtn.addEventListener('submit', function(){
+        myLibrary.push(book);
+    });
+    renderLibrary();
 };
 
 // Function to loop through the library and render books on the page
@@ -51,7 +57,8 @@ function renderLibrary(myLibrary){
     myLibrary.forEach((book) => {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('card');
-        cardDiv.id = `id-${book.id}`;
+        cardDiv.id = `id: ${book.id}`;
+        cardContainer.appendChild(cardDiv);
 
         const authorDiv = document.createElement('div');
         authorDiv.classList.add('card-child');
@@ -82,6 +89,16 @@ function renderLibrary(myLibrary){
         pagesDiv.appendChild(pagesLabel);
         pagesDiv.appendChild(pagesValue);
         cardDiv.appendChild(pagesDiv);
+
+        const genreDiv = document.createElement('div');
+        genreDiv.classList.add('card-child');
+        const genreLabel = document.createElement('h3');
+        genreLabel.textContent = 'Genre:';
+        const genreValue = document.createElement('span');
+        genreValue.textContent = `${book.genre}`;
+        genreDiv.appendChild(genreLabel);
+        genreDiv.appendChild(genreValue);
+        cardDiv.appendChild(genreDiv);
 
         const ifReadDiv = document.createElement('div');
         ifReadDiv.classList.add('card-child');
@@ -116,26 +133,20 @@ function changeReadStatus(book){
 
 // Function to delete books from the shelves(cards)
 function deleteBook(book){
-
+    
 }
 
-// Function to display the modal for creating books
+// Event listeners
 newBookBtn.addEventListener('click', () => {
     modal.showModal();
 });
 
+// Function to close the dialog
+closeBtn.addEventListener('click', () => {
+    modal.close();
+ });
 
 
-
-const bookOne = new Book("Arthur", "Welcome to Jam Rock", 560, "Fantasy");
-bookOne.addBookToLibrary();
-const bookTwo = new Book("Kite", "Fury in Hell", 405, "Action");
-bookTwo.addBookToLibrary();
-myLibrary.push(bookOne);
-myLibrary.push(bookTwo);
-const bookThree = new Book('Victoria', 'Goes in a dilemma', 603, 'Beauty');
-bookThree.addBookToLibrary();
-myLibrary.push(bookThree);
 
 document.addEventListener('DOMContentLoaded', function(){
     const footerYear = new Date().getFullYear();

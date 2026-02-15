@@ -9,7 +9,7 @@ html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'norse-bold';
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 36px;
     background-color: var(--primary-clr);
     color: var(--secondary-clr);
@@ -28,6 +28,11 @@ header{
     background-color: var(--background-clr);
     flex-direction: column;
     align-items: center;
+    font-family: 'norse-bold';
+}
+
+#card-container{
+    background-color: var(--secondary-clr);
 }
 
 #new-book-button{
@@ -51,4 +56,27 @@ footer{
     display: flex;
     justify-content: center;
     align-content: center;
+}
+
+#modal{
+    background-color: var(--primary-clr);
+    color: var(--secondary-clr);
+}
+
+#add-book-button{
+    background-color: var(--background-clr);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    color: var(--secondary-clr);
+    font-family: 'norse-bold';
+}
+
+#close-button{
+    cursor: pointer;
+    position: relative;
+}
+
+#add-book-button{
+    cursor: pointer;
 }
