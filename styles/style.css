@@ -5,23 +5,38 @@
     font-style: normal;
 }
 
-html{
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 36px;
+    font-size: 16px;
     background-color: var(--primary-clr);
     color: var(--secondary-clr);
 }
 
-:root{
+:root {
     --primary-clr: #360d81;
     --secondary-clr: #ffffffde;
     --background-clr: #1ab68f;
+    --card-bg: #f5f5f5;
+    --text-dark: #333;
+    --border-radius: 10px;
 }
 
-header{
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -29,54 +44,258 @@ header{
     flex-direction: column;
     align-items: center;
     font-family: 'norse-bold';
+    padding: 2rem 1rem;
 }
 
-#card-container{
+header h1 {
+    margin: 0.5rem 0;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+}
+
+.tool-bar {
+    margin-bottom: 1rem;
+}
+
+#card-container {
     background-color: var(--secondary-clr);
+    flex: 1;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    align-content: start;
 }
 
-#new-book-button{
+.card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--background-clr);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-child-div {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: baseline;
+}
+
+.card-child-div h3 {
+    margin: 0;
+    color: var(--primary-clr);
+    font-weight: bold;
+    min-width: 100px;
+    margin-right: 0.5rem;
+}
+
+.card-child-div span {
+    color: var(--text-dark);
+    flex: 1;
+    word-wrap: break-word;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.toggle-read-btn,
+.delete-book-btn {
+    flex: 1;
+    min-width: 120px;
     border: none;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: bold;
+}
+
+.toggle-read-btn {
+    background-color: var(--background-clr);
+    color: white;
+}
+
+.toggle-read-btn:hover {
+    background-color: #169d7a;
+}
+
+.delete-book-btn {
+    background-color: #d9534f;
+    color: white;
+}
+
+.delete-book-btn:hover {
+    background-color: #c9302c;
+}
+
+#new-book-button {
+    border: none;
+    border-radius: var(--border-radius);
     background-color: var(--primary-clr);
     color: var(--secondary-clr);
-    padding: 10px;
-    font-size: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     font-family: 'norse-bold';
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: bold;
 }
 
-#new-book-button:hover{
+#new-book-button:hover {
     background-color: var(--secondary-clr);
     color: var(--primary-clr);
 }
 
-footer{
+footer {
     display: flex;
     justify-content: center;
     align-content: center;
+    background-color: var(--background-clr);
+    padding: 1rem;
+    color: var(--text-dark);
+    font-weight: bold;
 }
 
-#modal{
+footer p {
+    margin: 0;
+}
+
+#modal {
     background-color: var(--primary-clr);
     color: var(--secondary-clr);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    max-width: 600px;
 }
 
-#add-book-button{
+#modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#book-creator {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#book-creator h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+#book-creator div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#book-creator label {
+    font-weight: bold;
+}
+
+#book-creator input[type="text"],
+#book-creator input[type="number"] {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--text-dark);
+}
+
+#book-creator input[type="text"]:focus,
+#book-creator input[type="number"]:focus {
+    outline: none;
+    border-color: var(--background-clr);
+    box-shadow: 0 0 5px var(--background-clr);
+}
+
+#radio-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.radio-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.radio-button input[type="radio"] {
+    cursor: pointer;
+}
+
+fieldset {
+    border: 1px solid var(--secondary-clr);
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0;
+}
+
+legend {
+    padding: 0 0.5rem;
+    font-weight: bold;
+}
+
+#add-book-button {
     background-color: var(--background-clr);
     border: none;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1.5rem;
     color: var(--secondary-clr);
     font-family: 'norse-bold';
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
 }
 
-#close-button{
-    cursor: pointer;
-    position: relative;
+#add-book-button:hover {
+    background-color: #169d7a;
 }
 
-#add-book-button{
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--secondary-clr);
     cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close:hover {
+    color: var(--background-clr);
+}
+
+.close::before {
+    content: "✕";
+}
+
+.invalid-input {
+    display: none;
+    color: #d9534f;
+    font-size: 0.85rem;
 }
