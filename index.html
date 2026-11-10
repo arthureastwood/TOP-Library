@@ -23,7 +23,7 @@
         <!-- Modal pop-up -->
         <div id="modal-container">
             <dialog id="modal">
-                <form action="" method="dialog" id="book-creator">
+                <form novalidate id="book-creator">
                     <div>
                         <h2>Add a New Book To the Library</h2>
                     </div>
@@ -33,10 +33,9 @@
                             id="author-first-name"
                             name="author-first-name"
                             maxlength="25" 
-                            pattern="(?![\s\-'][\s\-'])([A-Za-z]+(?:[\s\-']?[A-Za-z]+)+)"
-                            title="Use only letters, single spaces, apostrophes, and hyphens. Words must be at most 25 characters and start and end with a letter." 
+                            pattern="(?![\s\-'][\s\-'])([A-Za-z]+(?:[\s\-']?[A-Za-z]+)+)" 
                         required/>
-                        <span id="author-first-name-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                        <span id="first-name-error" aria-live="polite" class="error"></span>
                     </div>
                     <div>
                         <label for="author-last-name">Author Last Name</label>
@@ -44,25 +43,25 @@
                             id="author-last-name" 
                             name="author-last-name"
                             maxlength="50" 
-                            pattern="(?![\s\-'][\s\-'])([A-Za-z]+(?:[\s\-']?[A-Za-z]+)+)"
-                            title="Use only letters, single spaces, apostrophes, and hyphens. Words must be at most 50 characters and start and end with a letter." 
+                            pattern="(?![\s\-'][\s\-'])([A-Za-z]+(?:[\s\-']?[A-Za-z]+)+)" 
                         required>
-                        <span id="author-last-name-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                        <span id="last-name-error" aria-live="polite" class="error"></span>
                     </div>
                     <div>
                         <label for="title-input">Book Title</label>
                         <input type="text" id="title-input" name="title" maxlength="100" required>
-                        <span id="book-title-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                        <span id="title-error" aria-live="polite" class="error"></span>
                     </div>
                     <div>
                         <div>
                             <label for="pages-input">How many pages does the book have?</label>
                             <input type="number" id="pages-input" name="pages" min="1" max="2500" required>
+                            <span id="pages-error" aria-live="polite" class="error"></span>
                         </div>
                         <div>
                             <label for="title-input">Genre</label>
                             <input type="text" id="genre-input" name="genre" maxlength="100" required>
-                            <span id="book-genre-span" class="invalid-input">Maximum word length is 28 characters!</span>
+                            <span id="genre-error" aria-live="polite" class="error"></span>
                         </div>
                         <div>
                             <fieldset>

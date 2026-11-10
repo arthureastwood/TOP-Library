@@ -1,9 +1,19 @@
 // DOM Elements
-const form = document.getElementById('book-creator');
-const newBookBtn = document.getElementById('new-book-button');
-const modal = document.getElementById('modal');
-const closeBtn = document.getElementById('close-button');
-const cardContainer = document.getElementById('card-container');
+const form = document.getElementById("book-creator");
+const newBookBtn = document.getElementById("new-book-button");
+const modal = document.getElementById("modal");
+const closeBtn = document.getElementById("close-button");
+const cardContainer = document.getElementById("card-container");
+const firstNameInput = document.getElementById("author-first-name");
+const lastNameInput = document.getElementById("author-last-name");
+const titleInput = document.getElementById("title-input");
+const pagesInput = document.getElementById("pages-input");
+const genreInput = document.getElementById("genre-input");
+const firstNameError = document.querySelector("#author-first-name + span#first-name-error");
+const lastNameError = document.querySelector("#author-last-name + span#last-name-error");
+const titleError = document.querySelector("#title-input + span#title-error");
+const pagesError = document.querySelector("#pages-input + span#pages-error");
+const genreError = document.querySelector("#genre-input + span#genre-error");
 
 // Class for creating books
 class Book {
@@ -171,10 +181,40 @@ function addBookToLibrary() {
     modal.close();
 }
 
+// Function for validating form submission
+function handleSubmit(){
+    if(firstNameInput.value && lastNameInput.value && titleInput.value && pagesInput.value && genreInput.value){
+        addBookToLibrary();
+    } else if(firstNameInput.validity.valueMissing) {
+        firstNameError.textContent = "Author First name must be filled!";
+        firstNameError.className = "error";
+        return;
+    } else if(lastNameInput.validity.valueMissing){
+        lastNameError.textContent = "Author Last name must be filled!";
+        lastNameError.classList.add("error");
+        return;
+    } else if(titleInput.validity.valueMissing){
+        titleError.textContent = "Book Title field must be filled!";
+        titleError.classList.add("error");
+        return;
+    } else if(pagesInput.validity.valueMissing){
+        pagesError.textContent = "Book Pages number must be filled!";
+        pagesError.classList.add("error");
+        return;
+    } else if(genreInput.validity.valueMissing){
+        genreError.textContent = "Book Genre must be filled!";
+        genreError.classList.add("error");
+        return;
+    }
+}
+
 // Event listeners
+
 newBookBtn.addEventListener('click', () => {
     modal.showModal();
 });
+
+
 
 // Function to close the dialog
 closeBtn.addEventListener('click', () => {
@@ -182,9 +222,44 @@ closeBtn.addEventListener('click', () => {
     form.reset();
 });
 
+firstNameInput.addEventListener("input", () => {
+    if(firstNameInput.validity.valid){
+        firstNameError.textContent = "";
+        firstNameError.removeAttribute("class");
+    }
+});
+
+lastNameInput.addEventListener("input", () => {
+    if(lastNameInput.validity.valid){
+        lastNameError.textContent = "";
+        lastNameError.removeAttribute("class");
+    }
+});
+
+titleInput.addEventListener("input", () => {
+    if(titleInput.validity.valid){
+        titleError.textContent = "";
+        titleError.removeAttribute("class");
+    }
+});
+
+pagesInput.addEventListener("input", () => {
+    if(pagesInput.validity.valid){
+        pagesError.textContent = "";
+        pagesError.removeAttribute("class");
+    }
+});
+
+genreInput.addEventListener("input", () => {
+    if(genreInput.validity.valid){
+        genreError.textContent = "";
+        genreError.removeAttribute("class");
+    }
+});
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    addBookToLibrary();
+    handleSubmit();
 });
 
 // Set footer year
